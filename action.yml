@@ -1,0 +1,11 @@
+name: 'Build and tag docker image'
+description: 'Build and tag docker image'
+branding:
+  color: 'blue'
+  icon: 'arrow-down-circle'
+runs:
+  using: 'composite'
+  steps:
+    - name: build and tag
+      shell: bash
+      run: pack build ${{ github.event.repository.name }}:${{ steps.vars.outputs.sha_short }} --path . --builder heroku/builder:20
